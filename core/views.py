@@ -3,6 +3,9 @@ from .models import Automovil, Marca
 #importamos la mensajeria de django
 from django.contrib import messages
 #nuevo comentario
+from django.contrib.auth.decorators import login_required
+#un decorador nos permite agregar funcionalidad a un metodo(patron de diseño)
+
 
 # Create your views here.
 
@@ -22,7 +25,8 @@ def listado(request):
         'autos':autos
     })
 
-
+#arriba del metodo se agrga el decorador para dejarlo entrar solo si esta autenticadp
+@login_required
 def formulario(request):
     marcas = Marca.objects.all()
     #declaramos el diccionario de variables que se enviaran al template
